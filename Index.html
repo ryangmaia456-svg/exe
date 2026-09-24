@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚡ EXE Executor</title>
+<style>
+  /* Remove margens padrão e deixa tudo mais limpo */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* Fundo escuro da página inteira */
+  body {
+    background: linear-gradient(135deg, #0a0a15 0%, #1a1a2e 100%);
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  /* Caixa principal branca/preta */
+  .caixa {
+    max-width: 500px;
+    width: 100%;
+    background: #1e1e2e;
+    border-radius: 20px;
+    padding: 30px 25px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    text-align: center;
+  }
+
+  /* Quadrado preto com "EXE" escrito */
+  .logo {
+    width: 80px;
+    height: 80px;
+    background: #000000;
+    border: 3px solid #5082ff;
+    border-radius: 16px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  /* Título principal */
+  h1 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #6a8aff;
+  }
+
+  /* Subtítulo pequeno */
+  .subtitulo {
+    color: #888888;
+    font-size: 13px;
+    margin-bottom: 25px;
+  }
+
+  /* Caixa preta onde fica o código */
+  .caixa-codigo {
+    background: #0a0a15;
+    border: 1px solid #2a2a3e;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
+  /* Etiqueta "Código Loadstring" */
+  .etiqueta {
+    font-size: 11px;
+    color: #666666;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* Texto do código (verde) */
+  .codigo {
+    font-family: "Courier New", monospace;
+    font-size: 12px;
+    color: #6aff9a;
+    word-break: break-all;
+    line-height: 1.5;
+  }
+
+  /* Botões */
+  .botao {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-bottom: 12px;
+    color: #ffffff;
+    font-family: inherit;
+  }
+
+  /* Botão azul de copiar */
+  .botao-copiar {
+    background: linear-gradient(135deg, #3c5ac8, #5570e0);
+  }
+
+  /* Botão verde de baixar */
+  .botao-baixar {
+    background: linear-gradient(135deg, #2a8d4a, #36b85e);
+  }
+
+  /* Botão cinza de abrir link */
+  .botao-link {
+    background: linear-gradient(135deg, #555555, #777777);
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  /* Caixa de aviso vermelha */
+  .aviso {
+    background: #2a1a1a;
+    border: 1px solid #5a2a2a;
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 12px;
+    color: #ffb8b8;
+    margin-top: 15px;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  /* Rodapé */
+  .rodape {
+    margin-top: 20px;
+    font-size: 11px;
+    color: #555555;
+  }
+
+  /* Notificação que aparece ao copiar */
+  .notificacao {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #2a8d4a;
+    color: #ffffff;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 100;
+  }
+
+  /* Quando a notificação aparece */
+  .notificacao.mostrar {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+</style>
+</head>
+<body>
+
+<!-- Caixa principal -->
+<div class="caixa">
+
+  <!-- Logo quadrado preto com EXE -->
+  <div class="logo">EXE</div>
+
+  <!-- Título -->
+  <h1>EXE Executor</h1>
+  <p class="subtitulo">Cole o código no seu executor Roblox</p>
+
+  <!-- Caixa onde mostra o código -->
+  <div class="caixa-codigo">
+    <span class="etiqueta">📋 Código Loadstring</span>
+    <div class="codigo" id="codigo">
+      loadstring(game:HttpGet("https://cdn.sourceb.in/bins/Z0t2h9CMi3/0"))()
+    </div>
+  </div>
+
+  <!-- Botões -->
+  <button class="botao botao-copiar" onclick="copiarCodigo()">📋 COPIAR CÓDIGO</button>
+  <button class="botao botao-baixar" onclick="baixarArquivo()">📥 BAIXAR .TXT</button>
+  <button class="botao botao-link" onclick="abrirLink()">🌐 ABRIR NO NAVEGADOR</button>
+
+  <!-- Aviso explicando como usar -->
+  <div class="aviso">
+    <strong>⚠️ Como usar:</strong><br>
+    1. Copie o código acima<br>
+    2. Abra seu executor (Delta, Arceus, Codex)<br>
+    3. Cole dentro de qualquer jogo do Roblox<br>
+    4. Aperte <strong>RightShift</strong> para abrir/fechar o menu
+  </div>
+
+  <!-- Rodapé -->
+  <div class="rodape">⚡ EXE Executor © 2026</div>
+</div>
+
+<!-- Notificação (aparece escondida, só mostra quando copiar) -->
+<div class="notificacao" id="notificacao">✅ Copiado!</div>
+
+<script>
+  // O código que vai ser copiado
+  var CODIGO = 'loadstring(game:HttpGet("https://cdn.sourceb.in/bins/Z0t2h9CMi3/0"))()';
+
+  // Link do script (usado no botão de abrir navegador)
+  var LINK_SCRIPT = 'https://cdn.sourceb.in/bins/Z0t2h9CMi3/0';
+
+  // Função que mostra a notificação verde
+  function mostrarNotificacao(mensagem) {
+    var notif = document.getElementById('notificacao');
+    notif.textContent = mensagem;
+    notif.classList.add('mostrar');
+    setTimeout(function() {
+      notif.classList.remove('mostrar');
+    }, 2000);
+  }
+
+  // Função para copiar o código
+  function copiarCodigo() {
+    // Tenta usar o método moderno
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(CODIGO).then(
+        function() { mostrarNotificacao('✅ Copiado!'); },
+        function() { copiarAntigo(); }
+      );
+    } else {
+      copiarAntigo();
+    }
+  }
+
+  // Método antigo (caso o moderno falhe)
+  function copiarAntigo() {
+    var area = document.createElement('textarea');
+    area.value = CODIGO;
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    try {
+      document.execCommand('copy');
+      mostrarNotificacao('✅ Copiado!');
+    } catch (e) {
+      mostrarNotificacao('❌ Erro ao copiar');
+    }
+    document.body.removeChild(area);
+  }
+
+  // Função para baixar o código como arquivo .txt
+  function baixarArquivo() {
+    var conteudo = '-- EXE Executor\n';
+    conteudo += '-- Cole este código no seu executor Roblox\n\n';
+    conteudo += CODIGO + '\n';
+
+    var arquivo = new Blob([conteudo], { type: 'text/plain' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(arquivo);
+    link.download = 'exe-executor.txt';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    mostrarNotificacao('📥 Baixado!');
+  }
+
+  // Função para abrir o link do script no navegador
+  function abrirLink() {
+    window.open(LINK_SCRIPT, '_blank');
+  }
+</script>
+
+</body>
+  </html>
